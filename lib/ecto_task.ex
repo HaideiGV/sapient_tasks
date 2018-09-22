@@ -1,27 +1,18 @@
-defmodule EctoTask.Repo do
-  use Ecto.Repo,
-    otp_app: :my_app,
-    adapter: Ecto.Adapters.Postgres
-end
-
-defmodule EctoTask.App do
+defmodule SapientTasks.App do
   import Ecto.Query
-  alias EctoTask.Users
-  alias EctoTask.Posts
-  alias EctoTask.Repo
+  alias SapientTasks.Users
+  alias SapientTasks.Posts
+  alias SapientTasks.Repo
 
-#   def keyword_query do
-#     query = from w in Weather,
-#          where: w.prcp > 0 or is_nil(w.prcp),
-#          select: w
-#     Repo.all(query)
-#   end
+  def keyword_query do
+    query = from p in Posts,
+         where: p.users_id == 1,
+         select: p
+    Repo.all(query)
+  end
 
-#   def pipe_query do
-#     Weather
-#     |> where(city: "Kraków")
-#     |> order_by(:temp_lo)
-#     |> limit(10)
-#     |> Repo.all
-#   end
+  def piped_query do
+    posts = Posts |> where(users_id: 1) |> Repo.all
+    IO.puts posts
+  end
 end

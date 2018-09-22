@@ -10,13 +10,13 @@ defmodule SapientTasks.Repo.Migrations.Init do
     create table("posts") do
       add :kind, :string, size: 20
       add :text, :string, size: 1000
-      add :user_id, references(:users)
+      add :users_id, references(:users)
       timestamps()
     end
   end
 
   def down do
-    drop table("users")
     drop table("posts")
+    drop table("users")
   end
 end

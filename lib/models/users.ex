@@ -1,6 +1,6 @@
-defmodule EctoTask.Users do
+defmodule SapientTasks.Users do
   use Ecto.Schema
-  alias EctoTasks.Posts
+  alias SapientTasks.Posts
 
   schema "users" do
     field :name, :string
